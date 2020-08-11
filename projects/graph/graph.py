@@ -58,9 +58,7 @@ class Graph:
         beginning from starting_vertex.
         """
         s = Stack()
-
         visited = set()
-
         s.push(starting_vertex)
 
         while s.size() > 0:
@@ -104,32 +102,28 @@ class Graph:
         starting_vertex to destination_vertex in
         breath-first order.
         """
+# Create an empty queue and enqueue A PATH TO the starting vertex ID
         q = Queue()
-
         q.enqueue([starting_vertex])
-
+# Create a Set to store visited vertices
         visited = set()
 
-        while q.size() > 0:
-            v = q.dequeue()
-
-            last_vertex = v[-1]
-
-            if last_vertex in visited:
+        while q.size() > 0:# While the queue is not empty...
+            v = q.dequeue()# Dequeue the first PATH
+            last_vertex = v[-1]# Grab the last vertex from the PATH
+            if last_vertex in visited:# If that vertex has not been visited...
                 continue
 
             else:
-                visited.add(last_vertex)
+                visited.add(last_vertex)# Mark it as visited...
 
             for neighbor in self.get_neighbors(last_vertex):
                 next_path = v[:]
                 next_path.append(neighbor)
-
                 if neighbor == destination_vertex:
-                    return next_path
-
+                    return next_path# Then add A PATH TO its neighbors to the back of the queue
                 else:
-                    q.enqueue(next_path)
+                    q.enqueue(next_path)# COPY THE PATH
 
     def dfs(self, starting_vertex, destination_vertex):
         """
@@ -138,14 +132,11 @@ class Graph:
         depth-first order.
         """
         s = Stack()
-
         s.push([starting_vertex])
-
         visited = set()
 
         while s.size() > 0:
             v = s.pop()
-
             last_vertex = v[-1]
 
             if last_vertex in visited:
@@ -157,10 +148,8 @@ class Graph:
             for neighbor in self.get_neighbors(last_vertex):
                 next_path = v[:]
                 next_path.append(neighbor)
-
                 if neighbor == destination_vertex:
                     return next_path
-
                 else:
                     s.push(next_path)
 
@@ -177,27 +166,27 @@ class Graph:
         def dfs(path):
             last_path = path[-1]
 
-            if last_path in visited:
+            if last_path in visited: # if path was visited, return None
                 return None
 
-            else:
-                visited.add(last_path)
+            else: 
+                visited.add(last_path) #add to visited list
 
-            if last_path == destination_vertex:
-                return path
+            if last_path == destination_vertex: # if last_path is same as destination
+                return path #return it
 
-            for neighbor in self.get_neighbors(last_path):
+            for neighbor in self.get_neighbors(last_path): # for all neighbors of the last path
                 next_path = path[:]
-                next_path.append(neighbor)
+                next_path.append(neighbor) #add neighbor as next path
 
-                found = dfs(next_path)
+                found = dfs(next_path) # recursively use function to find the next and keep going until None
 
                 if found:
                     return found
 
             return None
 
-        return dfs([starting_vertex])
+        return dfs([starting_vertex]) # #basically just say to run the whole thing recursively
 
 if __name__ == '__main__':
     graph = Graph()  # Instantiate your graph
