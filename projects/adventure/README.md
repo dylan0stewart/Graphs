@@ -54,6 +54,10 @@ If all paths have been explored, you're done!
 ## Stretch Problems
 
 It is very difficult to calculate the shortest possible path that traverses the entire graph. Why?
+'
+I would say a big part of the problem comes from not being able to implement both searches simultaneously. Only being able to do depth, then breadth, then back to depth, Rather than being able to simultaneously check all paths of all neighbors.
+really we're just using a 'Random Walk Search', rather than an approach like a "Minimum Spanning Tree"
+The Minimum Spanning Tree algorithm starts from a given node and finds all its reachable nodes and the set of relationships that connect the nodes together with the smallest possible weight. It traverses to the next unvisited node with the lowest weight from any visited node, avoiding cycles, which would cut out a lottttt of steps. Idoin't really understand it well enough to implement in time though.s
 
 My best path is 957 moves. Can you find a shorter path?
 
